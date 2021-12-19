@@ -10,25 +10,26 @@ def get_usd_information():
     return f'RATE {usd_rate}, AVAILABLE {balance.usd_balance}'
 
 
-def exchange_uah(uah_sum):
+def exchange_uah(uah_sum):  # продаем доллар
     print(balance.uah_balance)
     print(balance.usd_balance)
     usd_sum = round(uah_sum / usd_rate, 4)
-    rate = usd_sum / uah_sum
+    rate = round(usd_sum / uah_sum, 6)
     balance.change(balance.uah_balance + uah_sum, round(balance.usd_balance - usd_sum, 2))
     print(balance.uah_balance)
     print(balance.usd_balance)
     return f'USD {usd_sum}, RATE {rate}'
 
-"""
-def exchange_usd(usd_sum, balance.u):
-    uah_sum = round(usd_sum / uah_rate, 4)
-    rate = uah_sum / usd_sum
-    uah_balance -= uah_sum
-    usd_balance += usd_sum
-    print(f'UAH {uah_sum}, RATE {rate}')
-    return uah_balance, usd_balance
 
-"""
+def exchange_usd(usd_sum):  # покупаем доллар
+    print(balance.uah_balance)
+    print(balance.usd_balance)
+    uah_sum = round(usd_sum * uah_rate, 4)
+    rate = round(uah_sum / usd_sum, 6)
+    balance.change(balance.uah_balance - uah_sum, round(balance.usd_balance + usd_sum, 2))
+    print(balance.uah_balance)
+    print(balance.usd_balance)
+    return f'UAH {uah_sum}, RATE {rate}'
+
 
 
